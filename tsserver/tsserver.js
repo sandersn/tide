@@ -56117,7 +56117,8 @@ var ts;
                                     references: [{
                                             fileName: sourceFile.fileName,
                                             textSpan: ts.createTextSpan(position, searchText.length),
-                                            isWriteAccess: false
+                                            isWriteAccess: false,
+                                            isDefinition: false
                                         }]
                                 });
                             }
@@ -56595,7 +56596,8 @@ var ts;
             return {
                 fileName: node.getSourceFile().fileName,
                 textSpan: ts.createTextSpanFromBounds(start, end),
-                isWriteAccess: isWriteAccess(node)
+                isWriteAccess: isWriteAccess(node),
+                isDefinition: ts.isDeclarationName(node)
             };
         }
         /** A node is considered a writeAccess iff it is a name of a declaration or a target of an assignment */
@@ -58896,7 +58898,8 @@ var ts;
                             start: start,
                             lineText: lineText,
                             end: compilerService.host.positionToLineOffset(ref.fileName, ts.textSpanEnd(ref.textSpan)),
-                            isWriteAccess: ref.isWriteAccess
+                            isWriteAccess: ref.isWriteAccess,
+                            isDefinition: ref.isDefinition
                         };
                     });
                 }, compareFileStart, areReferencesResponseItemsForTheSameLocation);
@@ -62475,5 +62478,5 @@ var TypeScript;
 // TODO: it should be moved into a namespace though.
 /* @internal */
 var toolsVersion = "1.9";
-/* tslint:enable:no-unused-variable */ 
+/* tslint:enable:no-unused-variable */
 //# sourceMappingURL=file:////media/nathansa/src2/TypeScript/built/local/tsserver.js.map
