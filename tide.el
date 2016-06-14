@@ -762,7 +762,7 @@ number."
               (if (or (eq definition nil) (tide-is-identical-reference definition reference))
                   (setq definition reference)
                 (setq multiple t))
-            (if (or (eq usage nil) (tide-is-duplicate-reference usage reference))
+            (if (or (eq usage nil) (tide-is-identical-reference usage reference))
                 (setq usage reference)
               (setq multiple t)))))
     (if (and (not multiple) usage definition)
