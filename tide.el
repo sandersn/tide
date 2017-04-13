@@ -974,7 +974,8 @@ Noise can be anything like braces, reserved keywords, etc."
     (setq pos (next-single-property-change pos 'tide-reference))
     (unless pos
       (error "Moved past last reference")))
-  (goto-char pos))
+  (goto-char pos)
+  (save-selected-window (tide-goto-reference)))
 
 (defun tide-find-previous-reference (pos arg)
   "Move back to previous reference."
@@ -983,7 +984,8 @@ Noise can be anything like braces, reserved keywords, etc."
     (setq pos (previous-single-property-change pos 'tide-reference))
     (unless pos
       (error "Moved back before first reference")))
-  (goto-char pos))
+  (goto-char pos)
+  (save-selected-window (tide-goto-reference)))
 
 (defun tide-goto-reference ()
   "Jump to reference location in the file."
