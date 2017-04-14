@@ -1488,7 +1488,8 @@ code-analysis."
     (setq pos (next-single-property-change pos 'tide-error))
     (unless pos
       (error "Moved past last error")))
-  (goto-char pos))
+  (goto-char pos)
+  (save-selected-window (tide-goto-error)))
 
 (defun tide-find-previous-error (pos arg)
   "Move back to previous error."
@@ -1497,7 +1498,8 @@ code-analysis."
     (setq pos (previous-single-property-change pos 'tide-error))
     (unless pos
       (error "Moved back before first error")))
-  (goto-char pos))
+  (goto-char pos)
+  (save-selected-window (tide-goto-error)))
 
 (defun tide-goto-error ()
   "Jump to error location in the file."
